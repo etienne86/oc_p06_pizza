@@ -1,5 +1,7 @@
 -- Tables creation into db_pizza
 
+-- Please select the database 'db_pizza' in pgAdmin before executing these SQL requests
+
 CREATE SEQUENCE public.ingredient_id_seq;
 
 CREATE TABLE public.Ingredient (

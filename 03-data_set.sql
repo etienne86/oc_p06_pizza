@@ -1,5 +1,7 @@
 -- Data insertion into db_pizza
 
+-- Please select the database 'db_pizza' in pgAdmin before executing these SQL requests
+
 
 -- Customers
 
