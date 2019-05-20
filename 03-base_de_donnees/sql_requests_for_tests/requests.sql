@@ -87,7 +87,7 @@ FROM En_cours_pizza
 INNER JOIN Pizza ON Pizza.id = En_cours_pizza.pizza_id
 WHERE En_cours_pizza.point_de_vente_id = 1
 ORDER BY En_cours_pizza.attente_preparation, En_cours_pizza.en_preparation,
-    En_cours_pizza.en_cuisson, En_cours_pizza.pret_a_servir;
+         En_cours_pizza.en_cuisson, En_cours_pizza.pret_a_servir;
 
 -- 11. Afficher la liste des ingrédients en rupture de stock
 SELECT Stock.point_de_vente_id AS pt_vente, Ingredient.nom_ingredient AS ingredient, Stock.stock_courant AS stock
@@ -128,41 +128,3 @@ SELECT Pizza_disponible.point_de_vente_id, Pizza.type, Pizza_disponible.disponib
 FROM Pizza_disponible
 INNER JOIN Pizza ON Pizza.id = Pizza_disponible.pizza_id
 WHERE Pizza_disponible.disponible = FALSE;
-
--- 16. Afficher le taux de commandes annulées, par point de vente
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
