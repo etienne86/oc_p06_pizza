@@ -200,7 +200,8 @@ INSERT INTO Employe
         mail,
         alerte_sms,
         alerte_mail,
-        role
+        role,
+        point_de_vente_id
     )
 VALUES
     (
@@ -213,7 +214,8 @@ VALUES
         'linda.lacheffe@oc-pizza.com',
         TRUE,
         TRUE,
-        'gérant'
+        'gérant',
+        NULL
     ),
     (
         'luigi.bonnepate',
@@ -225,7 +227,8 @@ VALUES
         'luigi.bonnepate@oc-pizza.com',
         FALSE,
         FALSE,
-        'pizzaïolo'
+        'pizzaïolo',
+        1
     ),
     (
         'tony.deroux',
@@ -237,7 +240,8 @@ VALUES
         'tony.deroux@oc-pizza.com',
         FALSE,
         FALSE,
-        'livreur'
+        'livreur',
+        1
     );    
 
 

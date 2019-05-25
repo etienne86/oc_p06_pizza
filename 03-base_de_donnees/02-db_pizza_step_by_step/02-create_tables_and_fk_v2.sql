@@ -15,30 +15,6 @@ CREATE TABLE public.Ingredient (
 
 ALTER SEQUENCE public.ingredient_id_seq OWNED BY public.Ingredient.id;
 
-CREATE SEQUENCE public.employe_id_seq;
-
-CREATE TABLE public.Employe (
-                id INTEGER NOT NULL DEFAULT nextval('public.employe_id_seq'),
-                identifiant VARCHAR(100) NOT NULL,
-                mdp_chiffre CHAR(40) NOT NULL,
-                nom VARCHAR(100) NOT NULL,
-                prenom VARCHAR(100) NOT NULL,
-                telephone VARCHAR(20) NOT NULL,
-                authentifie BOOLEAN NOT NULL,
-                mail VARCHAR(100) NOT NULL,
-                alerte_sms BOOLEAN NOT NULL,
-                alerte_mail BOOLEAN NOT NULL,
-                role VARCHAR(50) NOT NULL,
-                CONSTRAINT employe_pk PRIMARY KEY (id)
-);
-
-
-ALTER SEQUENCE public.employe_id_seq OWNED BY public.Employe.id;
-
-CREATE UNIQUE INDEX employe_idx
- ON public.Employe
- ( identifiant );
-
 CREATE SEQUENCE public.pizza_id_seq;
 
 CREATE TABLE public.Pizza (
@@ -78,6 +54,31 @@ CREATE TABLE public.Point_de_vente (
 ALTER SEQUENCE public.point_de_vente_id_seq OWNED BY public.Point_de_vente.id;
 
 ALTER SEQUENCE public.point_de_vente_adresse_code_postal_seq OWNED BY public.Point_de_vente.adresse_code_postal;
+
+CREATE SEQUENCE public.employe_id_seq;
+
+CREATE TABLE public.Employe (
+                id INTEGER NOT NULL DEFAULT nextval('public.employe_id_seq'),
+                identifiant VARCHAR(100) NOT NULL,
+                mdp_chiffre CHAR(40) NOT NULL,
+                nom VARCHAR(100) NOT NULL,
+                prenom VARCHAR(100) NOT NULL,
+                telephone VARCHAR(20) NOT NULL,
+                authentifie BOOLEAN NOT NULL,
+                mail VARCHAR(100) NOT NULL,
+                alerte_sms BOOLEAN NOT NULL,
+                alerte_mail BOOLEAN NOT NULL,
+                role VARCHAR(50) NOT NULL,
+                point_de_vente_id INTEGER NOT NULL,
+                CONSTRAINT employe_pk PRIMARY KEY (id)
+);
+
+
+ALTER SEQUENCE public.employe_id_seq OWNED BY public.Employe.id;
+
+CREATE UNIQUE INDEX employe_idx
+ ON public.Employe
+ ( identifiant );
 
 CREATE TABLE public.Ligne_cmd_marchandise (
                 num CHAR(10) NOT NULL,
@@ -309,6 +310,13 @@ ON UPDATE NO ACTION
 NOT DEFERRABLE;
 
 ALTER TABLE public.Ligne_rcpt_marchandise ADD CONSTRAINT point_de_vente_reception_marchandise_fk
+FOREIGN KEY (point_de_vente_id)
+REFERENCES public.Point_de_vente (id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE;
+
+ALTER TABLE public.Employe ADD CONSTRAINT point_de_vente_employe_fk
 FOREIGN KEY (point_de_vente_id)
 REFERENCES public.Point_de_vente (id)
 ON DELETE NO ACTION
